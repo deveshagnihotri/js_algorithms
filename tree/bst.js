@@ -102,6 +102,36 @@ class BST {
     };
     this.root = removeNode(this.root, data);
   }
+
+  traversal() {
+    this.inOrderTraversal(this.root);
+    this.postOrderTraversal(this.root);
+    this.preOrderTraversal(this.root);
+  }
+
+  inOrderTraversal(root) {
+    if (root !== null) {
+      this.inOrderTraversal(root.left);
+      console.log(root.data, 'inOrderTraversal');
+      this.inOrderTraversal(root.right);
+    }
+  }
+
+  postOrderTraversal(root) {
+    if (root !== null) {
+      this.postOrderTraversal(root.left);
+      this.postOrderTraversal(root.right);
+      console.log(root.data, 'postOrderTraversal');
+    }
+  }
+
+  preOrderTraversal(root) {
+    if (root !== null) {
+      console.log(root.data, 'preOrderTraversal');
+      this.preOrderTraversal(root.left);
+      this.preOrderTraversal(root.right);
+    }
+  }
 }
 
 let result = new BST();
@@ -112,10 +142,5 @@ result.add(12);
 result.add(35);
 result.add(33);
 result.add(17);
-
-console.log(result.findMin());
-console.log(result.find(33));
-console.log(result.find(37));
-
-console.log(result.findMax());
-console.log(result.remove(15));
+result.add(14);
+result.traversal();
