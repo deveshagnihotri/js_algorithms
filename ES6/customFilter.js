@@ -1,19 +1,15 @@
 const arr = [2, 3, 4, 545, 2, 33, 65];
 
-Array.prototype.customMap  = function (processMap){
+Array.prototype.customFilter  = function(processMap, context) {
   const newArr = [];
   for(let i = 0; i < this.length; i++){
     if(this.indexOf(this[i] > -1)){
-      newArr[i] = processMap(this[i], i, this);
+      newArr[i] = processMap.call(context, this[i], i, this);
     }
   }
   return newArr;
 }
 
-const result  = arr.customMap(item => {
-  return item * 2
-});
-
-
+const result  = arr.customFilter(item => item > 4);
 
 console.log(result)
